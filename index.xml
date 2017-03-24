@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Almir Dzinovic&#39;s Corner</title>
-    <link>https://almir.github.io/index.xml</link>
+    <link>https://dzinovic.net/index.xml</link>
     <description>Recent content on Almir Dzinovic&#39;s Corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2010-2017 by &lt;a href=&#34;https://www.dzinovic.net&#34;&gt;Almir Dzinovic&#39;s Corner&lt;/a&gt;</copyright>
+    <copyright>&amp;copy; 2010-2017 by &lt;a href=&#34;https://dzinovic.net&#34;&gt;Almir Dzinovic&#39;s Corner&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 31 Jan 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://almir.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://dzinovic.net/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>VirtualBox on headless CentOS 6</title>
-      <link>https://almir.github.io/post/virtualbox-on-centos/</link>
+      <link>https://dzinovic.net/post/virtualbox-on-centos/</link>
       <pubDate>Tue, 31 Jan 2012 00:00:00 +0000</pubDate>
       
-      <guid>https://almir.github.io/post/virtualbox-on-centos/</guid>
+      <guid>https://dzinovic.net/post/virtualbox-on-centos/</guid>
       <description>&lt;p&gt;Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the &lt;a href=&#34;http://www.centos.org/&#34; target=&#34;_blank&#34;&gt;CentOS Linux&lt;/a&gt;, without having X windows and such unnecessary things installed, Oracle&amp;rsquo;s &lt;a href=&#34;https://www.virtualbox.org/&#34; target=&#34;_blank&#34;&gt;VirtualBox&lt;/a&gt;, and the PHP front-end for it called &lt;a href=&#34;https://sourceforge.net/projects/phpvirtualbox/&#34; target=&#34;_blank&#34;&gt;phpVirtualBox&lt;/a&gt;.
 Anyway, to make a long story short, here&amp;rsquo;s how to do it.&lt;/p&gt;
 
@@ -128,10 +128,10 @@ Default username/password combination is admin/admin.&lt;/p&gt;
     
     <item>
       <title>VMware VMs Linux startup script</title>
-      <link>https://almir.github.io/post/vmware-vms-linux-startup-script/</link>
+      <link>https://dzinovic.net/post/vmware-vms-linux-startup-script/</link>
       <pubDate>Mon, 14 Mar 2011 00:00:00 +0000</pubDate>
       
-      <guid>https://almir.github.io/post/vmware-vms-linux-startup-script/</guid>
+      <guid>https://dzinovic.net/post/vmware-vms-linux-startup-script/</guid>
       <description>&lt;p&gt;Once the hardware on my home PC got upgraded I decided to run a couple of virtual machines on it at all times.&lt;/p&gt;
 
 &lt;p&gt;I&amp;rsquo;ve chosen VMware Workstation for the job, considering that, as a VCP, I have a license for it. Underneath it is Ubuntu Linux 11.04 64-bit.&lt;/p&gt;
@@ -194,22 +194,22 @@ deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
     
     <item>
       <title>Robust File Copy Front End</title>
-      <link>https://almir.github.io/post/robust-file-copy-front-end/</link>
+      <link>https://dzinovic.net/post/robust-file-copy-front-end/</link>
       <pubDate>Wed, 22 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://almir.github.io/post/robust-file-copy-front-end/</guid>
+      <guid>https://dzinovic.net/post/robust-file-copy-front-end/</guid>
       <description>&lt;p&gt;This is meant to be the home page for my recent project Robust File Copy Front End, or RFCFE.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://almir.github.io/assets/rfcfe.png&#34;&gt;&lt;img align=&#34;right&#34; title=&#34;Robocopy Front End&#34; src=&#34;https://almir.github.io/assets/rfcfe.png&#34; alt=&#34;Robocopy Front End Main Window Screenshot&#34; width=&#34;300&#34; height=&#34;217&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://dzinovic.net/assets/rfcfe.png&#34;&gt;&lt;img align=&#34;right&#34; title=&#34;Robocopy Front End&#34; src=&#34;https://dzinovic.net/assets/rfcfe.png&#34; alt=&#34;Robocopy Front End Main Window Screenshot&#34; width=&#34;300&#34; height=&#34;217&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;This project arised from my extensive use of the robocopy command on Windows and wish to develop something using C# (even though I&amp;rsquo;m not really a developer). I know there already is a robocopy front end from TechNet, which is free, and even one (or more of them) that should be payed for, but I guessed one more won&amp;rsquo;t hurt, especially since this one is completely open sourced and GPL&amp;rsquo;d. As I already mentioned this application was developed using C# programming language and hence it requires the &lt;a href=&#34;http://www.microsoft.com/downloads/en/details.aspx?familyid=0856EACB-4362-4B0D-8EDD-AAB15C5E04F5&amp;amp;displaylang=en&#34; target=&#34;_blank&#34;&gt;Microsoft .NET Framework 2&lt;/a&gt; to run.&lt;br&gt;
 The application also requires you to have robocopy installed and configured in your system path, which should already be done if you&amp;rsquo;re using Windows Vista, 7, Server 2008 or Server 2008 R2. For older versions of Windows robocopy was installed as a part of the &lt;a href=&#34;http://www.microsoft.com/downloads/en/details.aspx?familyid=9d467a69-57ff-4ae7-96ee-b18c4790cffd&amp;amp;displaylang=en&#34; target=&#34;_blank&#34;&gt;Windows Resource Kit&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;The application installer, containing both x86 and x64 native executables, can be downloaded from &lt;a href=&#34;https://almir.github.io/downloads/rfcfe/rfcfe.1.1.installer.exe&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The application installer, containing both x86 and x64 native executables, can be downloaded from &lt;a href=&#34;https://dzinovic.net/downloads/rfcfe/rfcfe.1.1.installer.exe&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The source code for VS 2010 is available at &lt;a href=&#34;https://github.com/almir/rfcfe&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;MD5 checksums for the installer can be found &lt;a href=&#34;https://almir.github.io/downloads/rfcfe/md5sums.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and the changelog &lt;a href=&#34;https://almir.github.io/downloads/rfcfe/changelog.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;MD5 checksums for the installer can be found &lt;a href=&#34;https://dzinovic.net/downloads/rfcfe/md5sums.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and the changelog &lt;a href=&#34;https://dzinovic.net/downloads/rfcfe/changelog.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;For any suggestions and bug reports please &lt;a href=&#34;https://github.com/almir/rfcfe/issues/new&#34; target=&#34;_blank&#34;&gt;create an issue on GitHub&lt;/a&gt;.&lt;/p&gt;
 </description>
@@ -217,10 +217,10 @@ The application also requires you to have robocopy installed and configured in y
     
     <item>
       <title>Quake-style Terminal for Windows</title>
-      <link>https://almir.github.io/post/quake-style-terminal-for-windows/</link>
+      <link>https://dzinovic.net/post/quake-style-terminal-for-windows/</link>
       <pubDate>Tue, 21 Dec 2010 00:00:00 +0000</pubDate>
       
-      <guid>https://almir.github.io/post/quake-style-terminal-for-windows/</guid>
+      <guid>https://dzinovic.net/post/quake-style-terminal-for-windows/</guid>
       <description>
 
 &lt;h3 id=&#34;how-it-all-started&#34;&gt;How it all started&amp;hellip;&lt;/h3&gt;
@@ -231,7 +231,7 @@ The application also requires you to have robocopy installed and configured in y
 
 &lt;p&gt;Anyway, to make a long story short, I hope you&amp;rsquo;ll like this and, most importantly, find it useful.&lt;/p&gt;
 
-&lt;p&gt;You can check the changelog &lt;a href=&#34;https://almir.github.io/downloads/ddconsole/changelog.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and download the latest 32-bit version from &lt;a href=&#34;https://almir.github.io/downloads/ddconsole/ddconsole-1.36_x86.zip&#34;&gt;here&lt;/a&gt; and the latest 64-bit version from &lt;a href=&#34;https://almir.github.io/downloads/ddconsole/ddconsole-1.36_x64.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can check the changelog &lt;a href=&#34;https://dzinovic.net/downloads/ddconsole/changelog.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and download the latest 32-bit version from &lt;a href=&#34;https://dzinovic.net/downloads/ddconsole/ddconsole-1.36_x86.zip&#34;&gt;here&lt;/a&gt; and the latest 64-bit version from &lt;a href=&#34;https://dzinovic.net/downloads/ddconsole/ddconsole-1.36_x64.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
