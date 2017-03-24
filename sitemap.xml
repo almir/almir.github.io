@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://www.dzinovic.net/post/virtualbox-on-centos/</loc>
+    <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dzinovic.net/post/vmware-vms-linux-startup-script/</loc>
+    <lastmod>2011-03-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dzinovic.net/post/robust-file-copy-front-end/</loc>
+    <lastmod>2010-12-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dzinovic.net/post/quake-style-terminal-for-windows/</loc>
+    <lastmod>2010-12-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.dzinovic.net/</loc>
+    <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.dzinovic.net/post/</loc>
+    <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>
