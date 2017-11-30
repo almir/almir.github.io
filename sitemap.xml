@@ -28,8 +28,18 @@
   </url>
   
   <url>
+    <loc>https://dzinovic.net/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://dzinovic.net/post/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://dzinovic.net/tags/</loc>
     <priority>0</priority>
   </url>
   

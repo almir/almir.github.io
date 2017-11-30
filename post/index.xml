@@ -2,13 +2,15 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Almir Dzinovic&#39;s Corner</title>
-    <link>https://dzinovic.net/post/index.xml</link>
+    <link>https://dzinovic.net/post/</link>
     <description>Recent content in Posts on Almir Dzinovic&#39;s Corner</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2010-2017 by &lt;a href=&#34;https://dzinovic.net&#34;&gt;Almir Dzinovic&#39;s Corner&lt;/a&gt;</copyright>
     <lastBuildDate>Tue, 31 Jan 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://dzinovic.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="https://dzinovic.net/post/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>VirtualBox on headless CentOS 6</title>
@@ -16,114 +18,7 @@
       <pubDate>Tue, 31 Jan 2012 00:00:00 +0000</pubDate>
       
       <guid>https://dzinovic.net/post/virtualbox-on-centos/</guid>
-      <description>&lt;p&gt;Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the &lt;a href=&#34;http://www.centos.org/&#34; target=&#34;_blank&#34;&gt;CentOS Linux&lt;/a&gt;, without having X windows and such unnecessary things installed, Oracle&amp;rsquo;s &lt;a href=&#34;https://www.virtualbox.org/&#34; target=&#34;_blank&#34;&gt;VirtualBox&lt;/a&gt;, and the PHP front-end for it called &lt;a href=&#34;https://sourceforge.net/projects/phpvirtualbox/&#34; target=&#34;_blank&#34;&gt;phpVirtualBox&lt;/a&gt;.
-Anyway, to make a long story short, here&amp;rsquo;s how to do it.&lt;/p&gt;
-
-&lt;p&gt;First of, obviously, we&amp;rsquo;ll need to install CentOS on the machine. The only thing that should be highlighted about this phase is to choose the &lt;em&gt;Basic Server&lt;/em&gt; installation method and let the installation process finish.&lt;/p&gt;
-
-&lt;p&gt;Once the installation is finished and the system is up and running the first thing that we should do is to login as root and update it:&lt;br&gt;
-&lt;code&gt;yum -y update&lt;/code&gt;&lt;br&gt;
-After the update is finished reboot the machine to make it boot into the fresh new kernel.&lt;/p&gt;
-
-&lt;p&gt;Next, the regular user should be added to the system:&lt;br&gt;
-&lt;code&gt;useradd reguser&lt;/code&gt;&lt;br&gt;
-and, to unlock newly created user account and set the password:&lt;br&gt;
-&lt;code&gt;passwd reguser&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The following two steps aren&amp;rsquo;t really necessary, but since I&amp;rsquo;m running this server inside the LAN, and don&amp;rsquo;t need SELinux and firewall to be enabled I disabled all of those.&lt;/p&gt;
-
-&lt;p&gt;Disable SELinux by editing the &lt;code&gt;/etc/selinux/config&lt;/code&gt; file and changing the value of &lt;code&gt;SELINUX&lt;/code&gt; variable from &lt;code&gt;enforcing&lt;/code&gt; to &lt;code&gt;disabled&lt;/code&gt;. This change will take effect after the machine is rebooted. To disable SELinux right away type:&lt;br&gt;
-&lt;code&gt;setenforce 0&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Disabling iptables firewall consists of the following commands:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;service iptables save
-service iptables stop
-chkconfig iptables off
-service ip6tables save
-service ip6tables stop
-chkconfig ip6tables off
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;After all that we will need to install Apache web server, PHP and PHP SOAP extension (which is needed by the phpVirtualBox to operate properly), start Apache web server and set it to start automatically on boot (didn&amp;rsquo;t need to edit the Apache config file, since the default one was just fine for me):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;yum -y install httpd php php-soap
-service httpd start
-chkconfig httpd on
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We will also need to install the &lt;em&gt;Development Tools&lt;/em&gt; group, which is a prerequisite for VirtualBox kernel modules to compile:&lt;br&gt;
-&lt;code&gt;yum -y groupinstall &amp;quot;Development Tools&amp;quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;After that, we add the VirtualBox repository to the list of the repositories on our system.&lt;br&gt;
-&lt;code&gt;wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Now it&amp;rsquo;s time to install VirtualBox:&lt;br&gt;
-&lt;code&gt;yum -y install VirtualBox-4.3&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Once the installation is done add the regular user to the &lt;em&gt;vboxusers&lt;/em&gt; user group:&lt;br&gt;
-&lt;code&gt;usermod -G vboxusers reguser&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Download and unzip the latest version of the phpVirtualBox:&lt;br&gt;
-&lt;code&gt;wget &#39;http://sourceforge.net/projects/phpvirtualbox/files/latest/download&#39; -O phpvirtualbox-latest.zip
-unzip phpvirtualbox-*.zip&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Then, copy the phpVirtualBox files to the Apache Documents Root directory:&lt;br&gt;
-&lt;code&gt;cp -r phpvirtualbox-*/* /var/www/html/&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, copy and edit the phpVirtualBox configuration file:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cp /var/www/html/config.php-example /var/www/html/config.php
-vim /var/www/html/config.php
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;username&lt;/code&gt; and &lt;code&gt;password&lt;/code&gt; variables within this file should be changed to reflect the values set for regular user, under whose credentials we will run VirtualBox, for example:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var $username = &#39;reguser&#39;;
-var $password = &#39;verycomplexpass&#39;;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;If not already present create the config file for the VirtualBox web service (&lt;code&gt;/etc/default/virtualbox&lt;/code&gt;). This file should contain at least the &lt;code&gt;VBOXWEB_USER&lt;/code&gt; variable. My system didn&amp;rsquo;t have it so I just put this one variable into it:&lt;br&gt;
-&lt;code&gt;echo &amp;quot;VBOXWEB_USER=&#39;reguser&#39;&amp;quot; &amp;gt; /etc/default/virtualbox&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Now start the &lt;em&gt;vboxweb&lt;/em&gt; service and configure it to start automatically on boot:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;service vboxweb-service start
-chkconfig vboxweb-service on
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Enable USB support in VirtualBox:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkdir /vbusbfs
-echo &amp;quot;none /vbusbfs usbfs rw,devgid=$(awk -F : &#39;/vboxusers/ {print $3}&#39; /etc/group),devmode=664 0 0&amp;quot; &amp;amp;gt;&amp;amp;gt; /etc/fstab
-mount -a
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Install the VirtualBox Extension Pack (has to be the same version as VirtualBox itself, and is required in order to be able to run the guest&amp;rsquo;s console through web interface):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;VBOXLATEST=`wget -q -O - http://download.virtualbox.org/virtualbox/LATEST.TXT` &amp;amp;&amp;amp; wget http://download.virtualbox.org/virtualbox/$VBOXLATEST/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack &amp;amp;&amp;amp; VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;After all that, install the custom init script (and its prerequsite package) to start and stop virtual machines automatically on startup and shutdown:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;yum -y install redhat-lsb-core
-wget https://dzinovic.net/downloads/vmsctrl/vbox/vmsctrl.tar.gz
-tar xvzf vmsctrl.tar.gz -C /etc/init.d/
-chkconfig --add vmsctrl
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Last, but not least, make your system automatically recompile VirtualBox kernel modules on kernel update:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;wget https://dzinovic.net/downloads/vmsctrl/vbox/VBoxCompileInstall
-chmod +x VBoxCompileInstall
-./VBoxCompileInstall
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;That should be it, now reboot your machine once more for everything to settle up, and once it&amp;rsquo;s up connect to the phpVirtualBox interface by simply typing the IP address of your server into your web browser.&lt;br&gt;
-Default username/password combination is admin/admin.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;IMPORTANT: All commands mentioned in this guide are to be executed as root.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-</description>
+      <description>Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the CentOS Linux, without having X windows and such unnecessary things installed, Oracle&amp;rsquo;s VirtualBox, and the PHP front-end for it called phpVirtualBox. Anyway, to make a long story short, here&amp;rsquo;s how to do it.</description>
     </item>
     
     <item>
@@ -132,64 +27,9 @@ Default username/password combination is admin/admin.&lt;/p&gt;
       <pubDate>Mon, 14 Mar 2011 00:00:00 +0000</pubDate>
       
       <guid>https://dzinovic.net/post/vmware-vms-linux-startup-script/</guid>
-      <description>&lt;p&gt;Once the hardware on my home PC got upgraded I decided to run a couple of virtual machines on it at all times.&lt;/p&gt;
-
-&lt;p&gt;I&amp;rsquo;ve chosen VMware Workstation for the job, considering that, as a VCP, I have a license for it. Underneath it is Ubuntu Linux 11.04 64-bit.&lt;/p&gt;
-
-&lt;p&gt;Now, because I like it all to be automatic I&amp;rsquo;ve written this little script which uses the &lt;code&gt;vmrun&lt;/code&gt; command to start and stop my virtual machines automatically during the boot-up and shutdown.&lt;/p&gt;
-
-&lt;p&gt;Recently, a &lt;a href=&#34;https://launchpad.net/~almirdz/+archive/ppa&#34; target=&#34;_blank&#34;&gt;Launchpad PPA&lt;/a&gt; containing Ubuntu packages has been created.&lt;/p&gt;
-
-&lt;p&gt;The packages have been tested to work on 32 and 64-bit &lt;strong&gt;Ubuntu 10.04 (Lucid)&lt;/strong&gt;, &lt;strong&gt;Ubuntu 10.10 (Maverick)&lt;/strong&gt; and&lt;strong&gt; Ubuntu 11.04 (Natty)&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;They should also work on Ubuntu 11.10 (Oneiric), but that one hasn&amp;rsquo;t really been tested yet.&lt;/p&gt;
-
-&lt;p&gt;Installation requires a few steps:&lt;/p&gt;
-
-&lt;p&gt;1 . Add the repositories and the PGP key to your system:&lt;/p&gt;
-
-&lt;p&gt;To add the repositories and the PGP key automatically type&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo add-apt-repository -y ppa:almirdz/ppa&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;followed by&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;to refresh the local packages list.&lt;/p&gt;
-
-&lt;p&gt;To manually add the repositories do the following:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo vim /etc/apt/sources.list.d/almirdz-ppa.list&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;and put the links to the repositories for your Ubuntu version, eg.:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;deb http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
-deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Then, add the PGP key to the list of trusted keys:&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3604082A&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;After all is done run&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;to refresh the local packages list.&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Install the package by simply typing:&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;code&gt;sudo apt-get -y install vmsctrl&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;That&amp;rsquo;s it, enjoy! ;-)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;IMPORTANT&lt;/em&gt;&lt;/strong&gt;: The path where virtual machines are stored, or the name of the virtual machine itself, &lt;strong&gt;must not&lt;/strong&gt; contain spaces in order for script to work properly. Also, the path to the &lt;code&gt;vmrun&lt;/code&gt; &lt;strong&gt;must&lt;/strong&gt; be configured within your environment variables.&lt;/p&gt;
-
-&lt;p&gt;For any suggestions and bug reports please &lt;a href=&#34;https://github.com/almir/vmsctrl/issues/new&#34; target=&#34;_blank&#34;&gt;create an issue on GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>Once the hardware on my home PC got upgraded I decided to run a couple of virtual machines on it at all times.
+I&amp;rsquo;ve chosen VMware Workstation for the job, considering that, as a VCP, I have a license for it. Underneath it is Ubuntu Linux 11.04 64-bit.
+Now, because I like it all to be automatic I&amp;rsquo;ve written this little script which uses the vmrun command to start and stop my virtual machines automatically during the boot-up and shutdown.</description>
     </item>
     
     <item>
@@ -198,21 +38,9 @@ deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
       <pubDate>Wed, 22 Dec 2010 00:00:00 +0000</pubDate>
       
       <guid>https://dzinovic.net/post/robust-file-copy-front-end/</guid>
-      <description>&lt;p&gt;This is meant to be the home page for my recent project Robust File Copy Front End, or RFCFE.&lt;/p&gt;
+      <description>This is meant to be the home page for my recent project Robust File Copy Front End, or RFCFE.
 
-&lt;p&gt;&lt;a href=&#34;https://dzinovic.net/assets/rfcfe.png&#34;&gt;&lt;img align=&#34;right&#34; title=&#34;Robocopy Front End&#34; src=&#34;https://dzinovic.net/assets/rfcfe.png&#34; alt=&#34;Robocopy Front End Main Window Screenshot&#34; width=&#34;300&#34; height=&#34;217&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;This project arised from my extensive use of the robocopy command on Windows and wish to develop something using C# (even though I&amp;rsquo;m not really a developer). I know there already is a robocopy front end from TechNet, which is free, and even one (or more of them) that should be payed for, but I guessed one more won&amp;rsquo;t hurt, especially since this one is completely open sourced and GPL&amp;rsquo;d. As I already mentioned this application was developed using C# programming language and hence it requires the &lt;a href=&#34;http://www.microsoft.com/downloads/en/details.aspx?familyid=0856EACB-4362-4B0D-8EDD-AAB15C5E04F5&amp;amp;displaylang=en&#34; target=&#34;_blank&#34;&gt;Microsoft .NET Framework 2&lt;/a&gt; to run.&lt;br&gt;
-The application also requires you to have robocopy installed and configured in your system path, which should already be done if you&amp;rsquo;re using Windows Vista, 7, Server 2008 or Server 2008 R2. For older versions of Windows robocopy was installed as a part of the &lt;a href=&#34;http://www.microsoft.com/downloads/en/details.aspx?familyid=9d467a69-57ff-4ae7-96ee-b18c4790cffd&amp;amp;displaylang=en&#34; target=&#34;_blank&#34;&gt;Windows Resource Kit&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The application installer, containing both x86 and x64 native executables, can be downloaded from &lt;a href=&#34;https://dzinovic.net/downloads/rfcfe/rfcfe.1.1.installer.exe&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The source code for VS 2010 is available at &lt;a href=&#34;https://github.com/almir/rfcfe&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;MD5 checksums for the installer can be found &lt;a href=&#34;https://dzinovic.net/downloads/rfcfe/md5sums.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and the changelog &lt;a href=&#34;https://dzinovic.net/downloads/rfcfe/changelog.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;For any suggestions and bug reports please &lt;a href=&#34;https://github.com/almir/rfcfe/issues/new&#34; target=&#34;_blank&#34;&gt;create an issue on GitHub&lt;/a&gt;.&lt;/p&gt;
-</description>
+This project arised from my extensive use of the robocopy command on Windows and wish to develop something using C# (even though I&amp;rsquo;m not really a developer). I know there already is a robocopy front end from TechNet, which is free, and even one (or more of them) that should be payed for, but I guessed one more won&amp;rsquo;t hurt, especially since this one is completely open sourced and GPL&amp;rsquo;d.</description>
     </item>
     
     <item>
@@ -221,18 +49,8 @@ The application also requires you to have robocopy installed and configured in y
       <pubDate>Tue, 21 Dec 2010 00:00:00 +0000</pubDate>
       
       <guid>https://dzinovic.net/post/quake-style-terminal-for-windows/</guid>
-      <description>
-
-&lt;h3 id=&#34;how-it-all-started&#34;&gt;How it all started&amp;hellip;&lt;/h3&gt;
-
-&lt;p&gt;Well, first things first&amp;hellip;&lt;/p&gt;
-
-&lt;p&gt;After using Linux for many years now I got used to the tool called YaKuake. It&amp;rsquo;s a quake-like console that can be set to start upon logging in and to be scrolled down and hidden just by pressing F12. This proved to be very useful tool that I practically got hooked on. Now, beeing sometimes (well, most of the times lately) forced to use Windows I&amp;rsquo;ve been trying to find something similar to this, and then I bumped into &lt;a href=&#34;http://www.instructables.com/id/%22Drop-Down%22%2c-Quake-style-command-prompt-for-Window/&#34; target=&#34;_blank&#34;&gt;this&lt;/a&gt; and by using the instructions and tools provided there I managed to fix up this little thingie I called &amp;ldquo;Quake-style Terminal for Windows&amp;rdquo; (not quite intuitive, I have to admit, but couldn&amp;rsquo;t come up with anything better at the time).&lt;/p&gt;
-
-&lt;p&gt;Anyway, to make a long story short, I hope you&amp;rsquo;ll like this and, most importantly, find it useful.&lt;/p&gt;
-
-&lt;p&gt;You can check the changelog &lt;a href=&#34;https://dzinovic.net/downloads/ddconsole/changelog.txt&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt; and download the latest 32-bit version from &lt;a href=&#34;https://dzinovic.net/downloads/ddconsole/ddconsole-1.36_x86.zip&#34;&gt;here&lt;/a&gt; and the latest 64-bit version from &lt;a href=&#34;https://dzinovic.net/downloads/ddconsole/ddconsole-1.36_x64.zip&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>How it all started&amp;hellip; Well, first things first&amp;hellip;
+After using Linux for many years now I got used to the tool called YaKuake. It&amp;rsquo;s a quake-like console that can be set to start upon logging in and to be scrolled down and hidden just by pressing F12. This proved to be very useful tool that I practically got hooked on. Now, beeing sometimes (well, most of the times lately) forced to use Windows I&amp;rsquo;ve been trying to find something similar to this, and then I bumped into this and by using the instructions and tools provided there I managed to fix up this little thingie I called &amp;ldquo;Quake-style Terminal for Windows&amp;rdquo; (not quite intuitive, I have to admit, but couldn&amp;rsquo;t come up with anything better at the time).</description>
     </item>
     
   </channel>
