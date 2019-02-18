@@ -2,44 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://dzinovic.net/post/virtualbox-on-centos/</loc>
+    <loc>/post/virtualbox-on-centos/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/post/vmware-vms-linux-startup-script/</loc>
+    <loc>/post/vmware-vms-linux-startup-script/</loc>
     <lastmod>2011-03-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/post/robust-file-copy-front-end/</loc>
+    <loc>/post/robust-file-copy-front-end/</loc>
     <lastmod>2010-12-22T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/post/quake-style-terminal-for-windows/</loc>
+    <loc>/post/quake-style-terminal-for-windows/</loc>
     <lastmod>2010-12-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/</loc>
+    <loc>/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/categories/</loc>
+    <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/post/</loc>
+    <loc>/post/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://dzinovic.net/tags/</loc>
+    <loc>/tags/</loc>
     <priority>0</priority>
   </url>
   
