@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/virtualbox-on-centos/</loc>
+    <loc>https://dzinovic.net/post/virtualbox-on-centos/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/post/vmware-vms-linux-startup-script/</loc>
+    <loc>https://dzinovic.net/post/vmware-vms-linux-startup-script/</loc>
     <lastmod>2011-03-14T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/post/robust-file-copy-front-end/</loc>
+    <loc>https://dzinovic.net/post/robust-file-copy-front-end/</loc>
     <lastmod>2010-12-22T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/post/quake-style-terminal-for-windows/</loc>
+    <loc>https://dzinovic.net/post/quake-style-terminal-for-windows/</loc>
     <lastmod>2010-12-21T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://dzinovic.net/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://dzinovic.net/categories/</loc>
+    <changefreq>monthly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>https://dzinovic.net/post/</loc>
     <lastmod>2012-01-31T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://dzinovic.net/tags/</loc>
+    <changefreq>monthly</changefreq>
     <priority>0</priority>
   </url>
   
