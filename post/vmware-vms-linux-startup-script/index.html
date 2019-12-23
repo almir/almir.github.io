@@ -60,62 +60,34 @@
     
     <div class="content">
       <p>Once the hardware on my home PC got upgraded I decided to run a couple of virtual machines on it at all times.</p>
-
-<p>I&rsquo;ve chosen VMware Workstation for the job, considering that, as a VCP, I have a license for it. Underneath it is Ubuntu Linux 11.04 64-bit.</p>
-
-<p>Now, because I like it all to be automatic I&rsquo;ve written this little script which uses the <code>vmrun</code> command to start and stop my virtual machines automatically during the boot-up and shutdown.</p>
-
-<p>Recently, a <a href="https://launchpad.net/~almirdz/+archive/ppa" target="_blank">Launchpad PPA</a> containing Ubuntu packages has been created.</p>
-
-<p>The packages have been tested to work on 32 and 64-bit <strong>Ubuntu 10.04 (Lucid)</strong>, <strong>Ubuntu 10.10 (Maverick)</strong> and<strong> Ubuntu 11.04 (Natty)</strong>.</p>
-
-<p>They should also work on Ubuntu 11.10 (Oneiric), but that one hasn&rsquo;t really been tested yet.</p>
-
+<p>I've chosen VMware Workstation for the job, considering that, as a VCP, I have a license for it. Underneath it is Ubuntu Linux 11.04 64-bit.</p>
+<p>Now, because I like it all to be automatic I've written this little script which uses the <code>vmrun</code> command to start and stop my virtual machines automatically during the boot-up and shutdown.</p>
+<p>Recently, a <!-- raw HTML omitted -->Launchpad PPA<!-- raw HTML omitted --> containing Ubuntu packages has been created.</p>
+<p>The packages have been tested to work on 32 and 64-bit <strong>Ubuntu 10.04 (Lucid)</strong>, <strong>Ubuntu 10.10 (Maverick)</strong> and** Ubuntu 11.04 (Natty)**.</p>
+<p>They should also work on Ubuntu 11.10 (Oneiric), but that one hasn't really been tested yet.</p>
 <p>Installation requires a few steps:</p>
-
 <p>1 . Add the repositories and the PGP key to your system:</p>
-
 <p>To add the repositories and the PGP key automatically type</p>
-
 <p><code>sudo add-apt-repository -y ppa:almirdz/ppa</code></p>
-
 <p>followed by</p>
-
 <p><code>sudo apt-get update</code></p>
-
 <p>to refresh the local packages list.</p>
-
 <p>To manually add the repositories do the following:</p>
-
 <p><code>sudo vim /etc/apt/sources.list.d/almirdz-ppa.list</code></p>
-
 <p>and put the links to the repositories for your Ubuntu version, eg.:</p>
-
-<p><code>deb http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
-deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
-</code></p>
-
-<p>Then, add the PGP key to the list of trusted keys:</p>
-
+<pre><code class="language-deb" data-lang="deb">deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
+</code></pre><p>Then, add the PGP key to the list of trusted keys:</p>
 <p><code>sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3604082A</code></p>
-
 <p>After all is done run</p>
-
 <p><code>sudo apt-get update</code></p>
-
 <p>to refresh the local packages list.</p>
-
-<ol>
+<ol start="2">
 <li>Install the package by simply typing:</li>
 </ol>
-
 <p><code>sudo apt-get -y install vmsctrl</code></p>
-
-<p>That&rsquo;s it, enjoy! ;-)</p>
-
-<p><strong><em>IMPORTANT</em></strong>: The path where virtual machines are stored, or the name of the virtual machine itself, <strong>must not</strong> contain spaces in order for script to work properly. Also, the path to the <code>vmrun</code> <strong>must</strong> be configured within your environment variables.</p>
-
-<p>For any suggestions and bug reports please <a href="https://github.com/almir/vmsctrl/issues/new" target="_blank">create an issue on GitHub</a>.</p>
+<p>That's it, enjoy! ;-)</p>
+<p><em><strong>IMPORTANT</strong></em>: The path where virtual machines are stored, or the name of the virtual machine itself, <strong>must not</strong> contain spaces in order for script to work properly. Also, the path to the <code>vmrun</code> <strong>must</strong> be configured within your environment variables.</p>
+<p>For any suggestions and bug reports please <!-- raw HTML omitted -->create an issue on GitHub<!-- raw HTML omitted -->.</p>
 
     </div>
     
@@ -126,6 +98,7 @@ deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
 <section class="section">
   <div class="container has-text-centered">
     <p>&copy; 2010-2019 by <a href="https://dzinovic.net">Almir Dzinovic's Corner</a></p>
+    <p><a href="/privacy/">Privacy Policy</a></p>
   </div>
 </section>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
@@ -137,12 +110,16 @@ deb-src http://ppa.launchpad.net/almirdz/ppa/ubuntu natty main
 <script>hljs.initHighlightingOnLoad();</script>
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-58616066-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-58616066-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
