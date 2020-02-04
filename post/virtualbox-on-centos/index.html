@@ -59,9 +59,9 @@
     <h2 class="subtitle is-5">January 31, 2012 </h2>
     
     <div class="content">
-      <p>Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the <!-- raw HTML omitted -->CentOS Linux<!-- raw HTML omitted -->, without having X windows and such unnecessary things installed, Oracle's <!-- raw HTML omitted -->VirtualBox<!-- raw HTML omitted -->, and the PHP front-end for it called <!-- raw HTML omitted -->phpVirtualBox<!-- raw HTML omitted -->.
-Anyway, to make a long story short, here's how to do it.</p>
-<p>First of, obviously, we'll need to install CentOS on the machine. The only thing that should be highlighted about this phase is to choose the <em>Basic Server</em> installation method and let the installation process finish.</p>
+      <p>Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the <!-- raw HTML omitted -->CentOS Linux<!-- raw HTML omitted -->, without having X windows and such unnecessary things installed, Oracle&rsquo;s <!-- raw HTML omitted -->VirtualBox<!-- raw HTML omitted -->, and the PHP front-end for it called <!-- raw HTML omitted -->phpVirtualBox<!-- raw HTML omitted -->.
+Anyway, to make a long story short, here&rsquo;s how to do it.</p>
+<p>First of, obviously, we&rsquo;ll need to install CentOS on the machine. The only thing that should be highlighted about this phase is to choose the <em>Basic Server</em> installation method and let the installation process finish.</p>
 <p>Once the installation is finished and the system is up and running the first thing that we should do is to login as root and update it:<!-- raw HTML omitted -->
 <code>yum -y update</code><!-- raw HTML omitted -->
 After the update is finished reboot the machine to make it boot into the fresh new kernel.</p>
@@ -69,7 +69,7 @@ After the update is finished reboot the machine to make it boot into the fresh n
 <code>useradd reguser</code><!-- raw HTML omitted -->
 and, to unlock newly created user account and set the password:<!-- raw HTML omitted -->
 <code>passwd reguser</code></p>
-<p>The following two steps aren't really necessary, but since I'm running this server inside the LAN, and don't need SELinux and firewall to be enabled I disabled all of those.</p>
+<p>The following two steps aren&rsquo;t really necessary, but since I&rsquo;m running this server inside the LAN, and don&rsquo;t need SELinux and firewall to be enabled I disabled all of those.</p>
 <p>Disable SELinux by editing the <code>/etc/selinux/config</code> file and changing the value of <code>SELINUX</code> variable from <code>enforcing</code> to <code>disabled</code>. This change will take effect after the machine is rebooted. To disable SELinux right away type:<!-- raw HTML omitted -->
 <code>setenforce 0</code></p>
 <p>Disabling iptables firewall consists of the following commands:</p>
@@ -79,7 +79,7 @@ chkconfig iptables off
 service ip6tables save
 service ip6tables stop
 chkconfig ip6tables off
-</code></pre><p>After all that we will need to install Apache web server, PHP and PHP SOAP extension (which is needed by the phpVirtualBox to operate properly), start Apache web server and set it to start automatically on boot (didn't need to edit the Apache config file, since the default one was just fine for me):</p>
+</code></pre><p>After all that we will need to install Apache web server, PHP and PHP SOAP extension (which is needed by the phpVirtualBox to operate properly), start Apache web server and set it to start automatically on boot (didn&rsquo;t need to edit the Apache config file, since the default one was just fine for me):</p>
 <pre><code>yum -y install httpd php php-soap
 service httpd start
 chkconfig httpd on
@@ -87,7 +87,7 @@ chkconfig httpd on
 <code>yum -y groupinstall &quot;Development Tools&quot;</code></p>
 <p>After that, we add the VirtualBox repository to the list of the repositories on our system.<!-- raw HTML omitted -->
 <code>wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo</code></p>
-<p>Now it's time to install VirtualBox:<!-- raw HTML omitted -->
+<p>Now it&rsquo;s time to install VirtualBox:<!-- raw HTML omitted -->
 <code>yum -y install VirtualBox-4.3</code></p>
 <p>Once the installation is done add the regular user to the <em>vboxusers</em> user group:<!-- raw HTML omitted -->
 <code>usermod -G vboxusers reguser</code></p>
@@ -117,7 +117,7 @@ echo &ldquo;none /vbusbfs usbfs rw,devgid=$(awk -F : &lsquo;/vboxusers/ {print $
 mount -a</p>
 <pre><code>
 Install the VirtualBox Extension Pack (has to be the same version as VirtualBox itself, and is required in order to be able to run the guest's console through web interface):
-</code></pre><p>VBOXLATEST=<code>wget -q -O - http://download.virtualbox.org/virtualbox/LATEST.TXT</code> &amp;&amp; wget <a href="http://download.virtualbox.org/virtualbox/">http://download.virtualbox.org/virtualbox/</a>$VBOXLATEST/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack &amp;&amp; VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack</p>
+</code></pre><p>VBOXLATEST=<code>wget -q -O - http://download.virtualbox.org/virtualbox/LATEST.TXT</code> &amp;&amp; wget <a href="http://download.virtualbox.org/virtualbox/$VBOXLATEST/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack">http://download.virtualbox.org/virtualbox/$VBOXLATEST/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack</a> &amp;&amp; VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack</p>
 <pre><code>
 After all that, install the custom init script (and its prerequsite package) to start and stop virtual machines automatically on startup and shutdown:
 </code></pre><p>yum -y install redhat-lsb-core
@@ -143,7 +143,7 @@ Default username/password combination is admin/admin.
 
 <section class="section">
   <div class="container has-text-centered">
-    <p>&copy; 2010-2019 by <a href="https://dzinovic.net">Almir Dzinovic's Corner</a></p>
+    <p>&copy; 2010-2020 by <a href="https://dzinovic.net">Almir Dzinovic's Corner</a></p>
     <p><a href="/privacy/">Privacy Policy</a></p>
   </div>
 </section>
