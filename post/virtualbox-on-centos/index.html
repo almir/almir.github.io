@@ -85,56 +85,48 @@ service httpd start
 chkconfig httpd on
 </code></pre><p>We will also need to install the <em>Development Tools</em> group, which is a prerequisite for VirtualBox kernel modules to compile:<br>
 <code>yum -y groupinstall &quot;Development Tools&quot;</code></p>
-<p>After that, we add the VirtualBox repository to the list of the repositories on our system.<br>
-<code>wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo</code></p>
-<p>Now it&rsquo;s time to install VirtualBox:<br>
-<code>yum -y install VirtualBox-4.3</code></p>
+<p>After that, we add the VirtualBox repository to the list of the repositories on our system.</p>
+<pre><code>wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
+</code></pre><p>Now it&rsquo;s time to install VirtualBox:<br>
+<code>yum -y install VirtualBox-5.0</code></p>
 <p>Once the installation is done add the regular user to the <em>vboxusers</em> user group:<br>
 <code>usermod -G vboxusers reguser</code></p>
-<p>Download and unzip the latest version of the phpVirtualBox:<br></p>
-<pre><code class="language-wget" data-lang="wget">unzip phpvirtualbox-*.zip```
-
-Then, copy the phpVirtualBox files to the Apache Documents Root directory:&lt;br&gt;
-```cp -r phpvirtualbox-*/* /var/www/html/```
-
-Next, copy and edit the phpVirtualBox configuration file:
-</code></pre><p>cp /var/www/html/config.php-example /var/www/html/config.php
-vim /var/www/html/config.php</p>
-<pre><code>The ```username``` and ```password``` variables within this file should be changed to reflect the values set for regular user, under whose credentials we will run VirtualBox, for example:
-</code></pre><p>var $username = &lsquo;reguser&rsquo;;
-var $password = &lsquo;verycomplexpass&rsquo;;</p>
-<pre><code>
-If not already present create the config file for the VirtualBox web service (```/etc/default/virtualbox```). This file should contain at least the ```VBOXWEB_USER``` variable. My system didn't have it so I just put this one variable into it:&lt;br&gt;
-```echo &quot;VBOXWEB_USER='reguser'&quot; &gt; /etc/default/virtualbox```
-
-Now start the _vboxweb_ service and configure it to start automatically on boot:
-</code></pre><p>service vboxweb-service start
-chkconfig vboxweb-service on</p>
-<pre><code>
-Enable USB support in VirtualBox:
-</code></pre><p>mkdir /vbusbfs
-echo &ldquo;none /vbusbfs usbfs rw,devgid=$(awk -F : &lsquo;/vboxusers/ {print $3}&rsquo; /etc/group),devmode=664 0 0&rdquo; &gt;&gt; /etc/fstab
-mount -a</p>
-<pre><code>
-Install the VirtualBox Extension Pack (has to be the same version as VirtualBox itself, and is required in order to be able to run the guest's console through web interface):
-</code></pre><p>VBOXLATEST=<code>wget -q -O - http://download.virtualbox.org/virtualbox/LATEST.TXT</code> &amp;&amp; wget <a href="http://download.virtualbox.org/virtualbox/$VBOXLATEST/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack">http://download.virtualbox.org/virtualbox/$VBOXLATEST/Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack</a> &amp;&amp; VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-$VBOXLATEST.vbox-extpack</p>
-<pre><code>
-After all that, install the custom init script (and its prerequsite package) to start and stop virtual machines automatically on startup and shutdown:
-</code></pre><p>yum -y install redhat-lsb-core
-wget //downloads/vmsctrl/vbox/vmsctrl.tar.gz
+<p>Download and unzip the latest version of the phpVirtualBox:</p>
+<pre><code>wget -O phpvirtualbox-latest.zip 'http://sourceforge.net/projects/phpvirtualbox/files/latest/download'
+unzip phpvirtualbox-*.zip
+</code></pre><p>Then, copy the phpVirtualBox files to the Apache Documents Root directory:<br>
+<code>cp -r phpvirtualbox-*/* /var/www/html/</code></p>
+<p>Next, copy and edit the phpVirtualBox configuration file:</p>
+<pre><code>cp /var/www/html/config.php-example /var/www/html/config.php
+vim /var/www/html/config.php
+</code></pre><p>The <code>username</code> and <code>password</code> variables within this file should be changed to reflect the values set for regular user, under whose credentials we will run VirtualBox, for example:</p>
+<pre><code>var $username = 'reguser';
+var $password = 'verycomplexpass';
+</code></pre><p>If not already present create the config file for the VirtualBox web service (<code>/etc/default/virtualbox</code>). This file should contain at least the <code>VBOXWEB_USER</code> variable. My system didn&rsquo;t have it so I just put this one variable into it:<br>
+<code>echo &quot;VBOXWEB_USER='reguser'&quot; &gt; /etc/default/virtualbox</code></p>
+<p>Now start the <em>vboxweb</em> service and configure it to start automatically on boot:</p>
+<pre><code>service vboxweb-service start
+chkconfig vboxweb-service on
+</code></pre><p>Enable USB support in VirtualBox:</p>
+<pre><code>mkdir /vbusbfs
+echo &quot;none /vbusbfs usbfs rw,devgid=$(awk -F : '/vboxusers/ {print $3}' /etc/group),devmode=664 0 0&quot; &gt;&gt; /etc/fstab
+mount -a
+</code></pre><p>Install the VirtualBox Extension Pack (has to be the same version as VirtualBox itself, and is required in order to be able to run the guest&rsquo;s console through web interface):</p>
+<pre><code>wget http://download.virtualbox.org/virtualbox/5.0.40/Oracle_VM_VirtualBox_Extension_Pack-5.0.40.vbox-extpack &amp;&amp; \
+VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.0.40.vbox-extpack
+</code></pre><p>After all that, install the custom init script (and its prerequsite package) to start and stop virtual machines automatically on startup and shutdown:</p>
+<pre><code>yum -y install redhat-lsb-core
+wget https://dzinovic.net/downloads/vmsctrl/vbox/vmsctrl.tar.gz
 tar xvzf vmsctrl.tar.gz -C /etc/init.d/
-chkconfig &ndash;add vmsctrl</p>
-<pre><code>
-Last, but not least, make your system automatically recompile VirtualBox kernel modules on kernel update:
-</code></pre><p>wget //downloads/vmsctrl/vbox/VBoxCompileInstall
+chkconfig --add vmsctrl
+</code></pre><p>Last, but not least, make your system automatically recompile VirtualBox kernel modules on kernel update:</p>
+<pre><code>wget https://dzinovic.net/downloads/vmsctrl/vbox/VBoxCompileInstall
 chmod +x VBoxCompileInstall
-./VBoxCompileInstall</p>
-<pre><code>
-That should be it, now reboot your machine once more for everything to settle up, and once it's up connect to the phpVirtualBox interface by simply typing the IP address of your server into your web browser.&lt;br&gt;
-Default username/password combination is admin/admin.
+./VBoxCompileInstall
+</code></pre><p>That should be it, now reboot your machine once more for everything to settle up, and once it&rsquo;s up connect to the phpVirtualBox interface by simply typing the IP address of your server into your web browser.<br>
+Default username/password combination is admin/admin.</p>
+<p><em><strong>IMPORTANT: All commands mentioned in this guide are to be executed as root.</strong></em></p>
 
-***IMPORTANT: All commands mentioned in this guide are to be executed as root.***
-</code></pre>
     </div>
     
   </div>
