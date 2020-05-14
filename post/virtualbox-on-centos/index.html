@@ -59,18 +59,18 @@
     <h2 class="subtitle is-5">January 31, 2012 </h2>
     
     <div class="content">
-      <p>Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the <!-- raw HTML omitted -->CentOS Linux<!-- raw HTML omitted -->, without having X windows and such unnecessary things installed, Oracle&rsquo;s <!-- raw HTML omitted -->VirtualBox<!-- raw HTML omitted -->, and the PHP front-end for it called <!-- raw HTML omitted -->phpVirtualBox<!-- raw HTML omitted -->.
+      <p>Due to the need to install a server which will be used mainly for hosting virtual machines, but also be capable to provide other services, such as being FTP and Samba server, I decided to go with the <a href="http://www.centos.org/" target="_blank">CentOS Linux</a>, without having X windows and such unnecessary things installed, Oracle&rsquo;s <a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a>, and the PHP front-end for it called <a href="https://sourceforge.net/projects/phpvirtualbox/" target="_blank">phpVirtualBox</a>.
 Anyway, to make a long story short, here&rsquo;s how to do it.</p>
 <p>First of, obviously, we&rsquo;ll need to install CentOS on the machine. The only thing that should be highlighted about this phase is to choose the <em>Basic Server</em> installation method and let the installation process finish.</p>
-<p>Once the installation is finished and the system is up and running the first thing that we should do is to login as root and update it:<!-- raw HTML omitted -->
-<code>yum -y update</code><!-- raw HTML omitted -->
+<p>Once the installation is finished and the system is up and running the first thing that we should do is to login as root and update it:<br>
+<code>yum -y update</code><br>
 After the update is finished reboot the machine to make it boot into the fresh new kernel.</p>
-<p>Next, the regular user should be added to the system:<!-- raw HTML omitted -->
-<code>useradd reguser</code><!-- raw HTML omitted -->
-and, to unlock newly created user account and set the password:<!-- raw HTML omitted -->
+<p>Next, the regular user should be added to the system:<br>
+<code>useradd reguser</code><br>
+and, to unlock newly created user account and set the password:<br>
 <code>passwd reguser</code></p>
 <p>The following two steps aren&rsquo;t really necessary, but since I&rsquo;m running this server inside the LAN, and don&rsquo;t need SELinux and firewall to be enabled I disabled all of those.</p>
-<p>Disable SELinux by editing the <code>/etc/selinux/config</code> file and changing the value of <code>SELINUX</code> variable from <code>enforcing</code> to <code>disabled</code>. This change will take effect after the machine is rebooted. To disable SELinux right away type:<!-- raw HTML omitted -->
+<p>Disable SELinux by editing the <code>/etc/selinux/config</code> file and changing the value of <code>SELINUX</code> variable from <code>enforcing</code> to <code>disabled</code>. This change will take effect after the machine is rebooted. To disable SELinux right away type:<br>
 <code>setenforce 0</code></p>
 <p>Disabling iptables firewall consists of the following commands:</p>
 <pre><code>service iptables save
@@ -83,15 +83,15 @@ chkconfig ip6tables off
 <pre><code>yum -y install httpd php php-soap
 service httpd start
 chkconfig httpd on
-</code></pre><p>We will also need to install the <em>Development Tools</em> group, which is a prerequisite for VirtualBox kernel modules to compile:<!-- raw HTML omitted -->
+</code></pre><p>We will also need to install the <em>Development Tools</em> group, which is a prerequisite for VirtualBox kernel modules to compile:<br>
 <code>yum -y groupinstall &quot;Development Tools&quot;</code></p>
-<p>After that, we add the VirtualBox repository to the list of the repositories on our system.<!-- raw HTML omitted -->
+<p>After that, we add the VirtualBox repository to the list of the repositories on our system.<br>
 <code>wget -O /etc/yum.repos.d/virtualbox.repo http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo</code></p>
-<p>Now it&rsquo;s time to install VirtualBox:<!-- raw HTML omitted -->
+<p>Now it&rsquo;s time to install VirtualBox:<br>
 <code>yum -y install VirtualBox-4.3</code></p>
-<p>Once the installation is done add the regular user to the <em>vboxusers</em> user group:<!-- raw HTML omitted -->
+<p>Once the installation is done add the regular user to the <em>vboxusers</em> user group:<br>
 <code>usermod -G vboxusers reguser</code></p>
-<p>Download and unzip the latest version of the phpVirtualBox:<!-- raw HTML omitted --></p>
+<p>Download and unzip the latest version of the phpVirtualBox:<br></p>
 <pre><code class="language-wget" data-lang="wget">unzip phpvirtualbox-*.zip```
 
 Then, copy the phpVirtualBox files to the Apache Documents Root directory:&lt;br&gt;

@@ -39,6 +39,7 @@ Now, because I like it all to be automatic I&amp;rsquo;ve written this little sc
       
       <guid>/post/robust-file-copy-front-end/</guid>
       <description>This is meant to be the home page for my recent project Robust File Copy Front End, or RFCFE.
+
 This project arised from my extensive use of the robocopy command on Windows and wish to develop something using C# (even though I&amp;rsquo;m not really a developer). I know there already is a robocopy front end from TechNet, which is free, and even one (or more of them) that should be payed for, but I guessed one more won&amp;rsquo;t hurt, especially since this one is completely open sourced and GPL&amp;rsquo;d.</description>
     </item>
     
@@ -49,7 +50,7 @@ This project arised from my extensive use of the robocopy command on Windows and
       
       <guid>/post/quake-style-terminal-for-windows/</guid>
       <description>How it all started&amp;hellip; Well, first things first&amp;hellip;
-After using Linux for many years now I got used to the tool called YaKuake. It&amp;rsquo;s a quake-like console that can be set to start upon logging in and to be scrolled down and hidden just by pressing F12. This proved to be very useful tool that I practically got hooked on. Now, beeing sometimes (well, most of the times lately) forced to use Windows I&amp;rsquo;ve been trying to find something similar to this, and then I bumped into thisand by using the instructions and tools provided there I managed to fix up this little thingie I called &amp;ldquo;Quake-style Terminal for Windows&amp;rdquo; (not quite intuitive, I have to admit, but couldn&amp;rsquo;t come up with anything better at the time).</description>
+After using Linux for many years now I got used to the tool called YaKuake. It&amp;rsquo;s a quake-like console that can be set to start upon logging in and to be scrolled down and hidden just by pressing F12. This proved to be very useful tool that I practically got hooked on. Now, beeing sometimes (well, most of the times lately) forced to use Windows I&amp;rsquo;ve been trying to find something similar to this, and then I bumped into this and by using the instructions and tools provided there I managed to fix up this little thingie I called &amp;ldquo;Quake-style Terminal for Windows&amp;rdquo; (not quite intuitive, I have to admit, but couldn&amp;rsquo;t come up with anything better at the time).</description>
     </item>
     
   </channel>
